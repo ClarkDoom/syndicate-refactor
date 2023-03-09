@@ -2,33 +2,36 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Profiles', {
+    await queryInterface.createTable('Shows', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      tmbdShowId: {
+        type: Sequelize.STRING
       },
-      photo: Sequelize.STRING,
-      userId: {
+      addedBy: {
         type: Sequelize.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
-          model: 'Users',
-          key: 'id',
-        },
+          model: 'Profiles',
+          key: 'id'
+        }
       },
-      userName: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      showName: {
+        type: Sequelize.STRING
       },
-      aboutMe: {
+      showDescription: {
         type: Sequelize.TEXT
+      },
+      imagueUrl: {
+        type: Sequelize.STRING
+      },
+      listType: {
+        type: Sequelize.ENUM('watchlist', 'currently watching', 'seen it')
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +44,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Profiles');
+    await queryInterface.dropTable('Shows');
   }
 };

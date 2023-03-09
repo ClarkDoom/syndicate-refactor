@@ -28,6 +28,13 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    aboutMe: {
+      type: DataTypes.TEXT,
+    }
   },
   {
     sequelize,
