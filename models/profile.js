@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'addedBy',
         as: 'shows'
       })
+      Profile.hasMany(models.Comment, {
+        foreignKey: 'createdBy',
+        as: 'comments'
+      })
     }
   }
 

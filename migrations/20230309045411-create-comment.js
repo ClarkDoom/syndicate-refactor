@@ -2,39 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Reviews', {
+    await queryInterface.createTable('Comments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      reviewContent: {
+      commentText: {
         type: Sequelize.TEXT
       },
-      rating: {
+      commentOn: {
         type: Sequelize.INTEGER
       },
-      author: {
+      reaction: {
+        type: Sequelize.STRING
+      },
+      createdBy: {
         type: Sequelize.INTEGER
-      },
-      tmbdShowId: {
-        type: Sequelize.STRING
-      },
-      reviewFor: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Shows',
-          key: 'id'
-        }
-      },
-      reviewForType: {
-        type: Sequelize.ENUM('show', 'season', 'episode')
-      },
-      reviewTitle: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -47,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Reviews');
+    await queryInterface.dropTable('Comments');
   }
 };
