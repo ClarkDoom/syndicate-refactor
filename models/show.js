@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       Show.belongsTo(models.Profile, {
         foreignKey: 'addedBy'
       })
+      Show.hasMany(models.Review, {
+        foreignKey: "reviewFor",
+        as: 'reviews'
+      })
     }
   }
   Show.init({

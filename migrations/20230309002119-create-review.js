@@ -21,8 +21,14 @@ module.exports = {
       tmbdShowId: {
         type: Sequelize.STRING
       },
-      showTitle: {
-        type: Sequelize.STRING
+      reviewFor: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Shows',
+          key: 'id'
+        }
       },
       reviewTitle: {
         type: Sequelize.STRING
