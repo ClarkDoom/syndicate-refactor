@@ -80,6 +80,18 @@ async function deleteAccount(req, res) {
     res.status(500).json({ err:error })
   }
 }
+async function update(req, res) {
+  try {
+    const user = await User.findByPk(req.params.id)
+    user.set(req.body)
+    await user.save()
+    res.status(200).json(user)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ err:error })
+  }
+}
+
 
 // /* --== Helper Functions ==-- */
 
@@ -87,4 +99,4 @@ function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: '24h' })
 }
 
-module.exports = { signup, login, changePassword, deleteAccount }
+module.exports = { signup, login, changePassword, deleteAccount, update }
