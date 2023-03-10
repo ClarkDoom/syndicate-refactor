@@ -28,4 +28,15 @@ async function addPhoto(req, res) {
   }
 }
 
-module.exports = { index, addPhoto }
+async function update(req, res) {
+  try {
+    const profile = await Profile.findByPk(req.params.id)
+    profile.set(req.body)
+    await profile.save()
+    res.status(200).json(profile)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
+module.exports = { index, addPhoto, update }
