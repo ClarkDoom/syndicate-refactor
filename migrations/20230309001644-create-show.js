@@ -27,7 +27,7 @@ module.exports = {
       showDescription: {
         type: Sequelize.TEXT
       },
-      imagueUrl: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       listType: {
