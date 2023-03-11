@@ -23,14 +23,23 @@ async function update(req, res) {
     res.status(500).json({ err: error })
   }
 }
-async function deleteShow(req, res) {
+async function deleteReview(req, res) {
   try {
-    const show = await Show.findByPk(req.params.showId)
-    await show.destroy()
-    res.status(200).json(show)
+    const review = await Review.findByPk(req.params.reviewId)
+    await review.destroy()
+    res.status(200).json(review)
   } catch (error) {
     res.status(500).json({ err: error })
   }
 }
 
-module.exports = { create, update }
+async function index(req, res) {
+  try {
+    const review = await Review.findAll({})
+    res.status(200).json(review)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
+module.exports = { create, update, deleteReview, index }
