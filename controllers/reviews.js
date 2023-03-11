@@ -15,10 +15,10 @@ async function create(req, res) {
 
 async function update(req, res) {
   try {
-    const show = await Show.findByPk(req.params.showId)
-    show.set(req.body)
-    await show.save()
-    res.status(200).json(show)
+    const review = await Review.findByPk(req.params.reviewId)
+    review.set(req.body)
+    await review.save()
+    res.status(200).json(review)
   } catch (error) {
     res.status(500).json({ err: error })
   }
@@ -33,4 +33,4 @@ async function deleteShow(req, res) {
   }
 }
 
-module.exports = { create }
+module.exports = { create, update }

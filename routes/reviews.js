@@ -10,6 +10,7 @@ const { decodeUserFromToken, checkAuth } = middleware
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/show/:showId/profile/:profileId', checkAuth, reviewsCtrl.create)
+router.patch('/review/:reviewId', checkAuth, reviewsCtrl.update)
 
 
 module.exports = router
