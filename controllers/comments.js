@@ -35,8 +35,8 @@ async function deleteComment(req, res) {
 
 async function index(req, res) {
   try {
-    const review = await Review.findAll({})
-    res.status(200).json(review)
+    const comment = await Comment.findAll({})
+    res.status(200).json(comment)
   } catch (error) {
     res.status(500).json({ err: error })
   }
