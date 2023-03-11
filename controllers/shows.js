@@ -41,6 +41,17 @@ async function index(req, res) {
     res.status(500).json({ err: error })
   }
 }
+async function getProfileShows(req, res) {
+  try {
+    const show = await Show.findAll({})
+    const profileShows = show.filter((shows) => {
+      return shows.addedBy = req.params.profileId
+    })
+    res.status(200).json(profileShows)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
 
 
-module.exports = { create, update, index, deleteShow }
+module.exports = { create, update, index, deleteShow, getProfileShows }
