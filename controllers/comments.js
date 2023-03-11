@@ -14,10 +14,10 @@ async function create(req, res) {
 
 async function update(req, res) {
   try {
-    const review = await Review.findByPk(req.params.reviewId)
-    review.set(req.body)
-    await review.save()
-    res.status(200).json(review)
+    const comment = await Comment.findByPk(req.params.commentId)
+    comment.set(req.body)
+    await comment.save()
+    res.status(200).json(comment)
   } catch (error) {
     res.status(500).json({ err: error })
   }
