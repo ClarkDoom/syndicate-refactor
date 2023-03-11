@@ -15,11 +15,11 @@ async function create(req, res) {
 
 async function update(req, res) {
   try {
-    req.body.addedBy = req.params.profileId
-    const show = await Show.create(req.body)
+    const show = await Show.findByPk(req.params.showId)
+    show.set(req.body)
+    await show.save()
     res.status(200).json(show)
   } catch (error) {
-    console.log(error)
     res.status(500).json({ err: error })
   }
 }
