@@ -12,7 +12,7 @@ router.use(decodeUserFromToken)
 router.get('/', checkAuth, commentsCtrl.index)
 router.post('/review/:reviewId/profile/:profileId', checkAuth, commentsCtrl.create)
 router.patch('/comment/:commentId', checkAuth, commentsCtrl.update)
-router.delete('/comment/:commentId', checkAuth, commentsCtrl.deleteReview)
+router.delete('/comment/:commentId', checkAuth, commentsCtrl.deleteComment)
 
 
 module.exports = router
