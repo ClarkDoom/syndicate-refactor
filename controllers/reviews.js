@@ -1,12 +1,12 @@
-const { Show } = require('../models')
-
+const { Review } = require('../models')
 
 
 async function create(req, res) {
   try {
-    req.body.addedBy = req.params.profileId
-    const show = await Show.create(req.body)
-    res.status(200).json(show)
+    req.body.reviewFor = req.params.showId
+    req.body.author = req.params.profileId
+    const review = await Review.create(req.body)
+    res.status(200).json(review)
   } catch (error) {
     console.log(error)
     res.status(500).json({ err: error })
@@ -33,14 +33,4 @@ async function deleteShow(req, res) {
   }
 }
 
-async function index(req, res) {
-  try {
-    const show = await Show.findAll({})
-    res.status(200).json(show)
-  } catch (error) {
-    res.status(500).json({ err: error })
-  }
-}
-
-
-module.exports = { create, update, index, deleteShow }
+module.exports = { create }

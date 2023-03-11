@@ -7,6 +7,7 @@ const formData = require('express-form-data')
 const profilesRouter = require('./routes/profiles.js')
 const authRouter = require('./routes/auth.js')
 const showsRouter = require('./routes/shows.js')
+const reviewsRouter = require('./routes/reviews.js')
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use(formData.parse())
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/shows', showsRouter) 
+app.use('/api/reviews', reviewsRouter) 
 
 app.use(function (req, res, next) {
   res.status(404).json({ err: 'Not found' })
