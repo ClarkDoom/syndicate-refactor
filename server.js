@@ -9,6 +9,7 @@ const authRouter = require('./routes/auth.js')
 const showsRouter = require('./routes/shows.js')
 const reviewsRouter = require('./routes/reviews.js')
 const commentsRouter = require('./routes/comments.js')
+const searchRouter = require('./routes/search.js')
 
 const app = express()
 
@@ -22,6 +23,7 @@ app.use('/api/auth', authRouter)
 app.use('/api/shows', showsRouter) 
 app.use('/api/reviews', reviewsRouter) 
 app.use('/api/comments', commentsRouter) 
+app.use('/api/search', searchRouter) 
 
 app.use(function (req, res, next) {
   res.status(404).json({ err: 'Not found' })

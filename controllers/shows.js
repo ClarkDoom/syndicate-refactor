@@ -53,5 +53,4 @@ async function getProfileShows(req, res) {
   }
 }
 
-
 module.exports = { create, update, index, deleteShow, getProfileShows }
