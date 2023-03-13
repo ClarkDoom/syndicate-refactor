@@ -9,7 +9,8 @@ const { decodeUserFromToken, checkAuth } = middleware
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
-router.get('/:searchQuery', searchCtrl.searchShows)
+router.get('/shows/:searchQuery', searchCtrl.searchShows)
+router.get('/show/:showId/season/:seasonNumber', checkAuth, searchCtrl.searchSeason)
 
 
 
