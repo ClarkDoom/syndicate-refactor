@@ -39,7 +39,7 @@ async function update(req, res) {
   }
 }
 
-async function show(req, res) {
+async  function show(req, res) {
   try {
     const profile = await Profile.findByPk(req.params.id, {
       include: [{ model: Show, as: "shows"},]

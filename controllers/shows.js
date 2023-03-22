@@ -3,6 +3,7 @@ const { Show } = require('../models')
 
 
 async function create(req, res) {
+  console.log("req.body ALERT ALERT ALERT", req.body)
   try {
     req.body.addedBy = req.params.profileId
     const show = await Show.create(req.body)

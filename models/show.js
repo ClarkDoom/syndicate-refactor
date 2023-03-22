@@ -36,8 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     imageUrl: {
       type: DataTypes.STRING,
     },
-    listType: {
-      type: DataTypes.ENUM('watchlist', 'currently watching', 'seen it')
+    showType: {
+      type: DataTypes.ENUM('watchlist', 'currently watching', 'seen it', 'favorite')
     },
   }, {
     sequelize,

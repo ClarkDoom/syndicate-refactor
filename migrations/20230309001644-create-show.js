@@ -30,8 +30,8 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING
       },
-      listType: {
-        type: Sequelize.ENUM('watchlist', 'currently watching', 'seen it')
+      showType: {
+        type: Sequelize.ENUM('watchlist', 'currently watching', 'seen it', 'favorite')
       },
       createdAt: {
         allowNull: false,
