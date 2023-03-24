@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class Show extends Model {
     static associate(models) {
       Show.belongsTo(models.Profile, {
-        foreignKey: 'addedBy'
+        foreignKey: 'addedBy',
+        as: 'profile'
       })
       Show.hasMany(models.Review, {
         foreignKey: "reviewFor",

@@ -1,4 +1,4 @@
-const { Show } = require('../models')
+const { Show, Profile } = require('../models')
 
 
 
@@ -15,30 +15,37 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
+  console.log("req.body", req.body)
   try {
     const show = await Show.findByPk(req.params.showId)
     show.set(req.body)
     await show.save()
+    console.log(show)
     res.status(200).json(show)
   } catch (error) {
     res.status(500).json({ err: error })
   }
 }
 async function deleteShow(req, res) {
+  console.log("req.params.showId", req.params.showId)
   try {
     const show = await Show.findByPk(req.params.showId)
     await show.destroy()
     res.status(200).json(show)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ err: error })
   }
 }
 
 async function index(req, res) {
   try {
-    const show = await Show.findAll({})
+    const show = await Show.findAll({
+      include: [{model: Profile, as: "profile"}]
+    })
     res.status(200).json(show)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ err: error })
   }
 }

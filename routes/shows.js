@@ -11,7 +11,7 @@ const { decodeUserFromToken, checkAuth } = middleware
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, showsCtrl.index)
 router.post('/profile/:profileId', checkAuth, showsCtrl.create)
-router.patch('/profile/:profileId/show/:showId', checkAuth, showsCtrl.update)
+router.patch('/show/:showId', checkAuth, showsCtrl.update)
 router.delete('/show/:showId', checkAuth, showsCtrl.deleteShow)
 router.get('/profile/:profileId', checkAuth, showsCtrl.getProfileShows)
 

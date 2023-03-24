@@ -30,9 +30,6 @@ module.exports = {
           key: 'id'
         }
       },
-      reviewForType: {
-        type: Sequelize.ENUM('show', 'season', 'episode')
-      },
       reviewTitle: {
         type: Sequelize.STRING
       },

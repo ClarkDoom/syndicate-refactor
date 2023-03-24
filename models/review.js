@@ -32,10 +32,6 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    reviewForType: {
-      type: DataTypes.ENUM('show', 'season', 'episode'),
-      allowNull: false,
-    },
     reviewTitle: DataTypes.STRING
   }, {
     sequelize,
