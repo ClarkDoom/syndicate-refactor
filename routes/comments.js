@@ -10,6 +10,7 @@ const { decodeUserFromToken, checkAuth } = middleware
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, commentsCtrl.index)
+router.get('/review/:reviewId', checkAuth, commentsCtrl.findReviewComments)
 router.post('/review/:reviewId/profile/:profileId', checkAuth, commentsCtrl.create)
 router.patch('/comment/:commentId', checkAuth, commentsCtrl.update)
 router.delete('/comment/:commentId', checkAuth, commentsCtrl.deleteComment)

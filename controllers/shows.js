@@ -1,4 +1,4 @@
-const { Show, Profile, Review } = require('../models')
+const { Show, Profile, Review, Comment } = require('../models')
 
 
 
@@ -42,7 +42,7 @@ async function index(req, res) {
   try {
     const show = await Show.findAll({
       include: [{ model: Profile, as: "profile" },
-        {model: Review, as: "reviews"}
+      { model: Review, as: "reviews", }
       ]
     })
     res.status(200).json(show)

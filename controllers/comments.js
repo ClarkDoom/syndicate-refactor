@@ -42,4 +42,15 @@ async function index(req, res) {
   }
 }
 
-module.exports = { create, update, deleteComment, index }
+async function findReviewComments(req, res) {
+  try {
+    const comments = await Comment.findAll({
+      where: { commentOn: req.params.reviewId }
+    })
+    res.status(200).json(comments)
+  } catch (error) {
+    res.status(500).json({ err: error })
+  }
+}
+
+module.exports = { create, update, deleteComment, index, findReviewComments }
