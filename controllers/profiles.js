@@ -1,4 +1,4 @@
-const { Profile, Show } = require('../models')
+const { Profile, Show, Review } = require('../models')
 const cloudinary = require('cloudinary').v2
 
 async function index(req, res) {
@@ -29,12 +29,15 @@ async function addPhoto(req, res) {
 }
 
 async function update(req, res) {
+  console.log("req.params.profileId", req.params.profileId)
   try {
-    const profile = await Profile.findByPk(req.params.id)
+    const profile = await Profile.findByPk(req.params.profileId)
+    console.log("profile", profile)
     profile.set(req.body)
     await profile.save()
     res.status(200).json(profile)
   } catch (error) {
+    console.log("ALERT ALERT ALERT", error)
     res.status(500).json({ err: error })
   }
 }
@@ -42,7 +45,7 @@ async function update(req, res) {
 async  function show(req, res) {
   try {
     const profile = await Profile.findByPk(req.params.id, {
-      include: [{ model: Show, as: "shows"},]
+      include: [{ model: Show, as: "shows"},{ model: Review, as: "reviews"}]
     })
     res.status(200).json(profile)
   } catch (error) {
