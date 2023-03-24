@@ -1,4 +1,4 @@
-const { Comment } = require('../models')
+const { Comment, Profile } = require('../models')
 
 
 async function create(req, res) {
@@ -45,10 +45,12 @@ async function index(req, res) {
 async function findReviewComments(req, res) {
   try {
     const comments = await Comment.findAll({
-      where: { commentOn: req.params.reviewId }
+      where: { commentOn: req.params.reviewId },
+      include: [{ model: Profile, as: "commentBy"}]
     })
     res.status(200).json(comments)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ err: error })
   }
 }

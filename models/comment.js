@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       Comment.belongsTo(models.Review, {
         foreignKey: 'commentOn'
       })
+      Comment.belongsTo(models.Profile, {
+        foreignKey: 'createdBy',
+        as: "commentBy"
+      })
     }
   }
   Comment.init({
