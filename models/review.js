@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     static associate(models) {
       Review.belongsTo(models.Show, {
-        foreignKey: 'reviewFor'
+        foreignKey: 'reviewFor',
+        as: 'reviewOf'
       })
       Review.hasMany(models.Comment, {
         foreignKey: 'createdBy', 
