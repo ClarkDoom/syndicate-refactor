@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
     static associate(models) {
       Comment.belongsTo(models.Review, {
-        foreignKey: 'commentOn'
+        foreignKey: 'commentOn',
+        as: 'commentFor'
       })
       Comment.belongsTo(models.Profile, {
         foreignKey: 'createdBy',

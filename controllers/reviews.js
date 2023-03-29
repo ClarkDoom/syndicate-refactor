@@ -1,4 +1,4 @@
-const { Review, Show } = require('../models')
+const { Review, Show, Profile } = require('../models')
 
 
 async function create(req, res) {
@@ -37,7 +37,7 @@ async function deleteReview(req, res) {
 async function index(req, res) {
   try {
     const review = await Review.findAll({
-      include: [{ model: Show, as: "reviewOf" }]
+      include: [{ model: Show, as: "reviewOf" }, { model: Profile, as: "reviewBy"}],
     })
     res.status(200).json(review)
   } catch (error) {

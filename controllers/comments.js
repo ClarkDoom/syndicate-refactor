@@ -1,4 +1,4 @@
-const { Comment, Profile } = require('../models')
+const { Comment, Profile, Review, Show } = require('../models')
 
 
 async function create(req, res) {
@@ -35,9 +35,18 @@ async function deleteComment(req, res) {
 
 async function index(req, res) {
   try {
-    const comment = await Comment.findAll({})
+    const comment = await Comment.findAll({
+      include: [
+        { model: Profile, as: "commentBy" },
+        {
+          model: Review, as: "commentFor",
+          include: [{ model: Show, as: "reviewOf" }]
+        }
+      ]
+    })
     res.status(200).json(comment)
   } catch (error) {
+    console.log(error)
     res.status(500).json({ err: error })
   }
 }
@@ -46,7 +55,7 @@ async function findReviewComments(req, res) {
   try {
     const comments = await Comment.findAll({
       where: { commentOn: req.params.reviewId },
-      include: [{ model: Profile, as: "commentBy"}]
+      include: [{ model: Profile, as: "commentBy" }]
     })
     res.status(200).json(comments)
   } catch (error) {
