@@ -43,7 +43,8 @@ async function index(req, res) {
     const show = await Show.findAll({
       include: [{ model: Profile, as: "profile" },
       { model: Review, as: "reviews", }
-      ]
+      ],
+      order: [['updatedAt', 'DESC']]
     })
     res.status(200).json(show)
   } catch (error) {

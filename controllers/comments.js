@@ -42,7 +42,8 @@ async function index(req, res) {
           model: Review, as: "commentFor",
           include: [{ model: Show, as: "reviewOf" }]
         }
-      ]
+      ],
+      order: [['updatedAt', 'DESC']]
     })
     res.status(200).json(comment)
   } catch (error) {
