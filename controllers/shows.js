@@ -53,11 +53,10 @@ async function index(req, res) {
 }
 async function getProfileShows(req, res) {
   try {
-    const show = await Show.findAll({})
-    const profileShows = show.filter((shows) => {
-      return shows.addedBy = req.params.profileId
+    const shows = await Show.findAll({
+      where: { addedBy: req.params.profileId }
     })
-    res.status(200).json(profileShows)
+    res.status(200).json(shows)
   } catch (error) {
     res.status(500).json({ err: error })
   }
