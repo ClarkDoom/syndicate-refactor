@@ -45,7 +45,8 @@ async function update(req, res) {
 async  function show(req, res) {
   try {
     const profile = await Profile.findByPk(req.params.id, {
-      include: [{ model: Show, as: "shows"},{ model: Review, as: "reviews"}]
+      include: [{ model: Show, as: "shows"},{ model: Review, as: "reviews", include: [{ model: Show, as: "reviewOf"}]
+    }]
     })
     res.status(200).json(profile)
   } catch (error) {
